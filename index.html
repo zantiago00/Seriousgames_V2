@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serious Games</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        header {
+            padding: 1rem;
+            background-color: #58cc02; /* duolingo green */
+            color: white;
+            text-align: center;
+        }
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: white;
+            border-top: 1px solid #ccc;
+        }
+        nav button {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            background: none;
+            font-size: 1rem;
+        }
+        nav button.active {
+            color: #58cc02;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Serious Games</h1>
+    </header>
+    <div class="content">
+        <div id="profile" class="page active">
+            <h2>Perfil del Jugador</h2>
+            <p>Información del usuario.</p>
+        </div>
+        <div id="concepts" class="page">
+            <h2>Banco de Conceptos</h2>
+            <p>Aquí se mostrarán los conceptos.</p>
+        </div>
+        <div id="rankings" class="page">
+            <h2>Rankings</h2>
+            <p>Tabla de posiciones.</p>
+        </div>
+    </div>
+    <nav>
+        <button id="btnProfile" class="active">Perfil</button>
+        <button id="btnConcepts">Conceptos</button>
+        <button id="btnRankings">Rankings</button>
+    </nav>
 
+<script>
+const pages = {
+    profile: document.getElementById('profile'),
+    concepts: document.getElementById('concepts'),
+    rankings: document.getElementById('rankings')
+};
+const buttons = {
+    profile: document.getElementById('btnProfile'),
+    concepts: document.getElementById('btnConcepts'),
+    rankings: document.getElementById('btnRankings')
+};
+
+function showPage(page) {
+    Object.values(pages).forEach(p => p.classList.remove('active'));
+    Object.values(buttons).forEach(b => b.classList.remove('active'));
+    pages[page].classList.add('active');
+    buttons[page].classList.add('active');
+}
+
+buttons.profile.addEventListener('click', () => showPage('profile'));
+buttons.concepts.addEventListener('click', () => showPage('concepts'));
+buttons.rankings.addEventListener('click', () => showPage('rankings'));
+</script>
+</body>
+</html>
